@@ -3,8 +3,8 @@ package s3_test
 import (
 	"testing"
 
-	s3 "github.com/OneBloodDataScience/pulumi-oneblood/go/internal/s3"
-	"github.com/OneBloodDataScience/pulumi-oneblood/go/internal/testutil"
+	s3 "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/s3"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/testutil"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/kms"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )

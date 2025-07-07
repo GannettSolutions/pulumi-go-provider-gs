@@ -4,10 +4,10 @@ package apigateway
 import (
 	"fmt"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/apigateway"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/cloudwatch"
-	awslambda "github.com/pulumi/pulumi-aws/sdk/v5/go/aws/lambda"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/apigateway"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/cloudwatch"
+	awslambda "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +30,7 @@ func NewApiGatewayLambdaComponent(ctx *pulumi.Context, name string, args *Args, 
 	}
 
 	comp := &ApiGatewayLambdaComponent{}
-	if err := ctx.RegisterComponentResource("oneblood:apigateway:ApiGatewayLambdaComponent", name, comp, opts...); err != nil {
+	if err := ctx.RegisterComponentResource("gs:apigateway:ApiGatewayLambdaComponent", name, comp, opts...); err != nil {
 		return nil, err
 	}
 	options := append(opts, pulumi.Parent(comp))

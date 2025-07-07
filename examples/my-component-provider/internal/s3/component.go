@@ -1,11 +1,12 @@
+// Package s3 contains a component that creates an S3 bucket with encryption and a basic policy.
 package s3
 
 import (
 	"fmt"
 
-	"github.com/OneBloodDataScience/pulumi-oneblood/go/internal/core"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/core"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/s3"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +30,7 @@ func NewS3BucketComponent(ctx *pulumi.Context, name string, args *Args, opts ...
 	}
 
 	comp := &S3BucketComponent{}
-	if err := ctx.RegisterComponentResource("oneblood:s3:S3BucketComponent", name, comp, opts...); err != nil {
+	if err := ctx.RegisterComponentResource("gs:s3:S3BucketComponent", name, comp, opts...); err != nil {
 		return nil, err
 	}
 

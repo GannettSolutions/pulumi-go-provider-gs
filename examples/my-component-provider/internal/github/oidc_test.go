@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	github "github.com/OneBloodDataScience/pulumi-oneblood/go/internal/github"
-	"github.com/OneBloodDataScience/pulumi-oneblood/go/internal/testutil"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecr"
+	github "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/github"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/testutil"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ecr"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

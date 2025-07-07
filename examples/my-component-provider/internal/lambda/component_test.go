@@ -6,7 +6,7 @@ import (
 
 	lambdapkg "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/lambda"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/testutil"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecr"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ecr"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

@@ -6,11 +6,11 @@ import (
 
 	cloudwatch "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/cloudwatch"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/core"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecr"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
-	awslambda "github.com/pulumi/pulumi-aws/sdk/v5/go/aws/lambda"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ecr"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
+	awslambda "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/s3"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

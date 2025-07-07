@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecr"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ecr"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-const oidcURL = "https://token.actions.githubusercontent.com"
+var oidcURL string = "https://token.actions.githubusercontent.com"
 
 var repoRegex = regexp.MustCompile(`^[\w-]+/[\w.-]+$`)
 
@@ -25,7 +25,7 @@ func CreateGithubOidcRole(ctx *pulumi.Context,
 ) (map[string]pulumi.Output, error) {
 
 	if !repoRegex.MatchString(githubRepo) {
-		return nil, fmt.Errorf("Invalid GitHub repo format. Must be 'owner/repo'")
+		return nil, fmt.Errorf("invalid GitHub repo format. Must be 'owner/repo'")
 	}
 	if len(ecrRepos) == 0 {
 		return nil, fmt.Errorf("ecr_repos must be provided")
@@ -44,13 +44,33 @@ func CreateGithubOidcRole(ctx *pulumi.Context,
 	if provider != nil {
 		opts = append(opts, pulumi.Provider(provider))
 	}
-	oidcProvider, err := iam.NewOpenIdConnectProvider(ctx, fmt.Sprintf("%s-github-actions-oidc", namePrefix), &iam.OpenIdConnectProviderArgs{
-		Url:             pulumi.String(oidcURL),
-		ClientIdLists:   pulumi.StringArray{pulumi.String("sts.amazonaws.com")},
-		ThumbprintLists: pulumi.StringArray{pulumi.String("6938fd4d98bab03faadb97b34396831e3780aea1")},
-	}, opts...)
-	if err != nil {
-		return nil, err
+
+	var oidcProviderArn pulumi.StringOutput
+
+	// Try to look up an existing OIDC provider
+	lookupOpts := []pulumi.InvokeOption{}
+	if provider != nil {
+		lookupOpts = append(lookupOpts, pulumi.Provider(provider))
+	}
+	existingOidcProvider, err := iam.LookupOpenIdConnectProvider(ctx, &iam.LookupOpenIdConnectProviderArgs{
+		// Url: pulumi.String(oidcURL).ToStringPtr(),
+		Url: &oidcURL,
+	}, lookupOpts...)
+
+	if err == nil && existingOidcProvider != nil {
+		// If an existing provider is found, use its ARN
+		oidcProviderArn = pulumi.String(existingOidcProvider.Arn).ToStringOutput()
+	} else {
+		// If no existing provider is found, create a new one
+		newOidcProvider, err := iam.NewOpenIdConnectProvider(ctx, fmt.Sprintf("%s-github-actions-oidc", namePrefix), &iam.OpenIdConnectProviderArgs{
+			Url:             pulumi.String(oidcURL),
+			ClientIdLists:   pulumi.StringArray{pulumi.String("sts.amazonaws.com")},
+			ThumbprintLists: pulumi.StringArray{pulumi.String("6938fd4d98bab03faadb97b34396831e3780aea1")},
+		}, opts...)
+		if err != nil {
+			return nil, err
+		}
+		oidcProviderArn = newOidcProvider.Arn
 	}
 
 	var repoArns []pulumi.StringInput
@@ -64,7 +84,7 @@ func CreateGithubOidcRole(ctx *pulumi.Context,
 	oidcSub := fmt.Sprintf("repo:%s:ref:refs/heads/%s", githubRepo, githubBranch)
 
 	role, err := iam.NewRole(ctx, fmt.Sprintf("%s-github-actions-role", namePrefix), &iam.RoleArgs{
-		AssumeRolePolicy: oidcProvider.Arn.ApplyT(func(arn string) (string, error) {
+		AssumeRolePolicy: oidcProviderArn.ApplyT(func(arn string) (string, error) {
 			pol := fmt.Sprintf(`{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Federated":"%s"},"Action":"sts:AssumeRoleWithWebIdentity","Condition":{"StringEquals":{"token.actions.githubusercontent.com:aud":"sts.amazonaws.com","token.actions.githubusercontent.com:sub":"%s"}}}]}`,
 				arn, oidcSub)
 			return pol, nil

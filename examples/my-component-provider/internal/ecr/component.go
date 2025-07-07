@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/core"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ecr"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws"
+	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ecr"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

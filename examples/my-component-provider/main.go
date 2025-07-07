@@ -21,9 +21,12 @@ import (
 	"fmt"
 	"os"
 
+	apigateway "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/api_gateway"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/cloudwatch"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/ecr"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/lambda"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/ms_entra"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/s3"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/nested"
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/infer"
@@ -52,6 +55,10 @@ func provider() (p.Provider, error) {
 			infer.ComponentF(lambda.NewLambdaComponent),
 			infer.ComponentF(ecr.NewEcrComponent),
 			infer.ComponentF(ms_entra.NewEntraAppComponent),
+			infer.ComponentF(apigateway.NewApiGatewayLambdaComponent),
+			infer.ComponentF(cloudwatch.NewLogGroupComponent),
+			infer.ComponentF(cloudwatch.NewLambdaCloudwatchComponent),
+			infer.ComponentF(s3.NewS3BucketComponent),
 		).
 		Build()
 }

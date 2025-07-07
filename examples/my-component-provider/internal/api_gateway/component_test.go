@@ -5,8 +5,8 @@ import (
 
 	apigw "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/api_gateway"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/testutil"
-	// "github.com/OneBloodDataScience/pulumi-oneblood/go/internal/testutil"
-	awslambda "github.com/pulumi/pulumi-aws/sdk/v5/go/aws/lambda"
+
+	awslambda "github.com/pulumi/pulumi-aws/sdk/v6/go/aws/lambda"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
