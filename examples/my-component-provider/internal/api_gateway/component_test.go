@@ -1,15 +1,16 @@
-package cloudwatch_test
+package apigateway_test
 
 import (
 	"testing"
 
-	cloudwatch "github.com/OneBloodDataScience/pulumi-oneblood/go/internal/cloudwatch"
-	"github.com/OneBloodDataScience/pulumi-oneblood/go/internal/testutil"
+	apigw "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/api_gateway"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/testutil"
+	// "github.com/OneBloodDataScience/pulumi-oneblood/go/internal/testutil"
 	awslambda "github.com/pulumi/pulumi-aws/sdk/v5/go/aws/lambda"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func TestCloudwatchComponent(t *testing.T) {
+func TestApiGatewayComponent(t *testing.T) {
 	err := pulumi.RunErr(func(ctx *pulumi.Context) error {
 		fn, err := awslambda.NewFunction(ctx, "fn", &awslambda.FunctionArgs{
 			PackageType: pulumi.String("Image"),
@@ -19,12 +20,7 @@ func TestCloudwatchComponent(t *testing.T) {
 		if err != nil {
 			return err
 		}
-		_, err = cloudwatch.NewCloudwatchComponent(ctx, "cw", &cloudwatch.Args{
-			Function:         fn,
-			LogRetentionDays: 7,
-			AlertsEmail:      "test@example.com",
-			RetryLimit:       1,
-		})
+		_, err = apigw.NewApiGatewayLambdaComponent(ctx, "api", &apigw.Args{Function: fn})
 		return err
 	}, pulumi.WithMocks("proj", "stack", &testutil.TestMocks{}))
 	if err != nil {

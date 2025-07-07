@@ -14,6 +14,10 @@
         "GOCACHE": "/home/msg/.cache/go-build",
         "GOMODCACHE": "/home/msg/go/pkg/mod"
       }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }

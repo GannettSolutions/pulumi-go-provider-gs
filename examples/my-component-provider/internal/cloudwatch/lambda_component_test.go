@@ -20,10 +20,14 @@ func TestCloudwatchComponent(t *testing.T) {
 			return err
 		}
 		_, err = cloudwatch.NewLambdaCloudwatchComponent(ctx, "cw", &cloudwatch.LambdaCloudwatchConfig{
-			Function:         fn,
-			LogRetentionDays: 7,
-			AlertsEmail:      "test@example.com",
-			RetryLimit:       1,
+			Function:                fn,
+			LogRetentionDays:        7,
+			AlertsEmail:             "test@example.com",
+			RetryLimit:              1,
+			EnableScheduler:         true,
+			EnableAlerts:            true,
+			SchedulerCronExpression: "cron(0 12 * * ? *)",
+			SchedulerTimezone:       "America/New_York",
 		})
 		return err
 	}, pulumi.WithMocks("proj", "stack", &testutil.TestMocks{}))
