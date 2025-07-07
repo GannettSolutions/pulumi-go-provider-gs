@@ -21,9 +21,12 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/ecr"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/lambda"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/ms_entra"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/nested"
-	"github.com/GannettSolutions/pulumi-go-provider-gs/infer"
-	p "github.com/GannettSolutions/pulumi-go-provider-gs/provider"
+	p "github.com/pulumi/pulumi-go-provider"
+	"github.com/pulumi/pulumi-go-provider/infer"
 )
 
 func main() {
@@ -46,6 +49,9 @@ func provider() (p.Provider, error) {
 		WithComponents(
 			infer.ComponentF(NewMyComponent),
 			infer.ComponentF(nested.NewNestedRandomComponent),
+			infer.ComponentF(lambda.NewLambdaComponent),
+			infer.ComponentF(ecr.NewEcrComponent),
+			infer.ComponentF(ms_entra.NewEntraAppComponent),
 		).
 		Build()
 }

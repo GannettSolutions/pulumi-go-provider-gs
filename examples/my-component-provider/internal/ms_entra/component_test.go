@@ -1,10 +1,10 @@
-package entra_test
+package ms_entra_test
 
 import (
 	"testing"
 
-	entra "github.com/OneBloodDataScience/pulumi-oneblood/go/internal/entra"
-	"github.com/OneBloodDataScience/pulumi-oneblood/go/internal/testutil"
+	entra "github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/ms_entra"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/internal/testutil"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )

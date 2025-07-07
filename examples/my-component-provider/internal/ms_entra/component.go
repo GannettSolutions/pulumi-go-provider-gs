@@ -1,4 +1,6 @@
-package entra
+// Package entra contains a component that creates an Azure AD application and uploads
+// the credentials to AWS Secrets Manager.
+package ms_entra
 
 import (
 	"encoding/json"
@@ -39,7 +41,7 @@ func NewEntraAppComponent(ctx *pulumi.Context, name string, args *Args, opts ...
 	}
 
 	comp := &EntraAppComponent{}
-	if err := ctx.RegisterComponentResource("oneblood:entra:EntraAppComponent", name, comp, opts...); err != nil {
+	if err := ctx.RegisterComponentResource("gs:entra:EntraAppComponent", name, comp, opts...); err != nil {
 		return nil, err
 	}
 

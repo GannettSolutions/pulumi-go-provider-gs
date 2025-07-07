@@ -29,3 +29,5 @@ bin
 
 **/sdk
 !examples/**/sdk
+examples/my-component-provider/consumer/state/.pulumi
+examples/my-component-provider/consumer/Pulumi.test.yaml

@@ -1,3 +1,4 @@
+// Package core contains shared code for the provider.
 package core
 
 import "github.com/pulumi/pulumi/sdk/v3/go/pulumi"

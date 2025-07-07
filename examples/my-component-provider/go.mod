@@ -2,14 +2,19 @@ module github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-p
 
 replace github.com/GannettSolutions/pulumi-go-provider-gs => ../..
 
+replace github.com/pulumi/pulumi-go-provider => ../../
+
 go 1.24
 
 toolchain go1.24.0
 
 require (
-	github.com/GannettSolutions/pulumi-go-provider-gs v0.0.0-00010101000000-000000000000
+	github.com/pulumi/pulumi-aws/sdk/v5 v5.43.0
+	github.com/pulumi/pulumi-azuread/sdk/v5 v5.53.5
+	github.com/pulumi/pulumi-go-provider v0.0.0-00010101000000-000000000000
 	github.com/pulumi/pulumi-random/sdk/v4 v4.18.0
 	github.com/pulumi/pulumi/sdk/v3 v3.169.0
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
@@ -31,6 +36,7 @@ require (
 	github.com/cloudflare/circl v1.6.1 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/cyphar/filepath-securejoin v0.3.6 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/djherbis/times v1.5.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
@@ -66,6 +72,7 @@ require (
 	github.com/pjbgf/sha1cd v0.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pkg/term v1.1.0 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/esc v0.13.0 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.169.0 // indirect

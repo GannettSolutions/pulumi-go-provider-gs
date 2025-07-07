@@ -15,8 +15,45 @@ resources:
     type: go-components:nested:NestedRandomComponent
     properties:
       length: 2
+
+  myecr:
+    type: gs:ecr:EcrComponent
+    properties:
+      repoName: "my-app-repo"
+
+  mylambda:
+    type: gs:lambda:LambdaComponent
+    properties:
+      lambdaConfig:
+        memorySize: 128
+        maxConcurrency: 1
+        retryLimit: 3
+        timeout: 60
+      ecrRepo: ${myecr.repository}
+      additionalEnvs:
+        "ENV1": "VALUE1"
+        "ENV2": "VALUE2"
+      s3TriggerBucket: ${aws:s3/bucket:Bucket}
+      s3BucketArns:
+        - ${aws:s3/bucket:Bucket}
+      kmsKeyArns:
+        - ${aws:kms/key:Key}
+      secretsManagerArns:
+        - ${aws:secretsmanager/secret:Secret}
+      provider: ${aws:provider:provider}
+
+
+
 outputs:
   password: ${myrandom.password.result}
   hardcoded: ${myrandom.hardcodedOutput}
   nestedPassword: ${myrandom-2.password.result}
   nestedHardcoded: ${myrandom-2.hardcodedOutput}
+
+  ecrRepoName: ${myecr.repository.name}
+
+  lambdaFunctionName: ${mylambda.functionName}
+  lambdaRoleArn: ${mylambda.roleArn}
+  lambdaFunctionArn: ${mylambda.functionArn}
+  ecrRepoName: ${myecr.repository.name}
+

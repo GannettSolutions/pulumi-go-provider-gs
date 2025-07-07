@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "mcp-go-lsp": {
+      "command": "/home/msg/code/mcp_servers/mcp-language-server/mcp-language-server",
+      "args": [
+        "--workspace",
+        "/home/msg/code/ob/pulumi-go-provider-gs/examples/my-component-provider",
+        "--lsp",
+        "/home/msg/go/bin/gopls"
+      ],
+      "env": {
+        "LOG_LEVEL": "DEBUG",
+        "GOPATH": "/home/msg/go",
+        "GOCACHE": "/home/msg/.cache/go-build",
+        "GOMODCACHE": "/home/msg/go/pkg/mod"
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-go-provider/examples/component-provider
+module github.com/GannettSolutions/pulumi-go-provider-gs/examples/component-provider
 
 replace github.com/pulumi/pulumi-go-provider => ../..
 
