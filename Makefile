@@ -52,8 +52,8 @@ EXAMPLE_DIRS := $(filter-out examples/README.md, $(wildcard examples/*/))
 test_examples: $(foreach dir,$(EXAMPLE_DIRS),$(dir)schema.json) $(foreach dir,$(EXAMPLE_DIRS),$(dir)test)
 
 # Build the provider binary for %, where % is the name of a directory in "examples/".
-bin/examples/pulumi-resource-%: $$(shell $${HELPMAKEGO} examples/$$*)
-	go build -C examples/$* -o ../../bin/examples/pulumi-resource-$* github.com/pulumi/pulumi-go-provider/examples/$*
+bin/examples/pulumi-resource-%: $(shell ${HELPMAKEGO} examples/$*)
+	go build -C examples/$* -o ../../bin/examples/pulumi-resource-$* github.com/GannettSolutions/pulumi-go-provider-gs/examples/$*
 
 # Generate a provider schema from an example provider binary
 examples/%/schema.json: bin/examples/pulumi-resource-%

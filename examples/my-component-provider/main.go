@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/component-provider/nested"
+	"github.com/GannettSolutions/pulumi-go-provider-gs/examples/my-component-provider/nested"
 	"github.com/GannettSolutions/pulumi-go-provider-gs/infer"
 	p "github.com/GannettSolutions/pulumi-go-provider-gs/provider"
 )
