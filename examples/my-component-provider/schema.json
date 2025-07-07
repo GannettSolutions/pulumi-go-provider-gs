@@ -1,0 +1,90 @@
+{
+  "name": "go-components",
+  "displayName": "yourdisplayname",
+  "version": "0.1.0",
+  "namespace": "examples",
+  "meta": {
+    "moduleFormat": "(.*)"
+  },
+  "language": {
+    "csharp": {
+      "respectSchemaVersion": true
+    },
+    "go": {
+      "generateResourceContainerTypes": true,
+      "importBasePath": "github.com/examples/yourdisplayname/sdk/go/yourdisplayname",
+      "respectSchemaVersion": true
+    },
+    "nodejs": {
+      "respectSchemaVersion": true
+    },
+    "python": {
+      "pyproject": {
+        "enabled": true
+      },
+      "respectSchemaVersion": true
+    }
+  },
+  "config": {},
+  "provider": {
+    "type": "object"
+  },
+  "resources": {
+    "go-components:index:RandomComponent": {
+      "properties": {
+        "hardcodedOutput": {
+          "type": "string"
+        },
+        "length": {
+          "type": "integer"
+        },
+        "password": {
+          "$ref": "/random/v4.8.1/schema.json#/resources/random:index%2FrandomPassword:RandomPassword"
+        }
+      },
+      "type": "object",
+      "required": [
+        "hardcodedOutput",
+        "length",
+        "password"
+      ],
+      "inputProperties": {
+        "length": {
+          "type": "integer"
+        }
+      },
+      "requiredInputs": [
+        "length"
+      ],
+      "isComponent": true
+    },
+    "go-components:nested:NestedRandomComponent": {
+      "properties": {
+        "hardcodedOutput": {
+          "type": "string"
+        },
+        "length": {
+          "type": "integer"
+        },
+        "password": {
+          "$ref": "/random/v4.8.1/schema.json#/resources/random:index%2FrandomPassword:RandomPassword"
+        }
+      },
+      "type": "object",
+      "required": [
+        "hardcodedOutput",
+        "length",
+        "password"
+      ],
+      "inputProperties": {
+        "length": {
+          "type": "integer"
+        }
+      },
+      "requiredInputs": [
+        "length"
+      ],
+      "isComponent": true
+    }
+  }
+}
